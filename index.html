@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LocalSite Hunter — Painel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+
+  <div class="topbar">
+    <div class="brand">
+      <span class="brand-mark"></span>
+      <span class="brand-name">LocalSite Hunter</span>
+      <span class="brand-sub">painel de prospecção</span>
+    </div>
+    <div class="topbar-right">Manaus, AM — raio de busca ativo</div>
+  </div>
+
+  <div class="filters">
+    <h2>Buscar empresas</h2>
+
+    <form id="searchForm">
+      <div class="field">
+        <label for="loc">Localização</label>
+        <input type="text" id="loc" value="Manaus, AM">
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="raio">Raio (km)</label>
+          <input type="number" id="raio" value="10" min="1" max="200">
+        </div>
+        <div class="field">
+          <label for="cat">Categoria</label>
+          <select id="cat">
+            <option value="todas">Todas</option>
+            <option value="Restaurante">Restaurante</option>
+            <option value="Clínica">Clínica</option>
+            <option value="Salão de beleza">Salão de beleza</option>
+            <option value="Oficina mecânica">Oficina mecânica</option>
+            <option value="Loja de material de construção">Loja de material de construção</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="rating">Avaliação mín.</label>
+          <input type="number" id="rating" value="4.0" step="0.1" min="0" max="5">
+        </div>
+        <div class="field">
+          <label for="reviews">Avaliações mín.</label>
+          <input type="number" id="reviews" value="50" min="0">
+        </div>
+      </div>
+
+      <label class="checkline">
+        <input type="checkbox" id="onlyNoWebsite" checked>
+        Somente empresas sem site (ou status incerto)
+      </label>
+
+      <button type="submit" class="btn-search">Pesquisar</button>
+    </form>
+  </div>
+
+  <div class="main">
+    <div class="main-head">
+      <h1>Resultados</h1>
+      <span class="result-count" id="resultCount">3 registros de exemplo</span>
+    </div>
+
+    <div class="demo-note">
+      Estes são <b>dados de exemplo</b>, apenas para demonstrar o funcionamento do painel — o LocalSite Hunter ainda não está conectado a um provedor real de dados de empresas. O filtro abaixo funciona de verdade sobre esses 3 registros de exemplo, mas nenhum dado aqui representa uma empresa verdadeira.
+    </div>
+
+    <div class="export-bar">
+      <div class="export-bar-text">
+        <b>Prévia para cliente.</b> Gere uma imagem ou um PDF estático desta tela — sem código, sem funcionalidade — só para o cliente aprovar o tema visual antes de você entregar o site de verdade.
+      </div>
+      <div class="export-actions">
+        <button class="btn-export" id="btnExportImg">Baixar como imagem</button>
+        <button class="btn-export primary" id="btnExportPdf">Baixar como PDF</button>
+      </div>
+    </div>
+
+    <div class="view-toggle">
+      <button class="active">Lista</button>
+      <button>Mapa</button>
+    </div>
+
+    <div id="previewCapture">
+      <div id="resultsList">
+
+        <!-- Registro 1 -->
+        <div class="record"
+             data-category="Restaurante"
+             data-rating="4.7"
+             data-reviews="312"
+             data-distance="2.4"
+             data-site-status="none">
+          <div>
+            <div class="record-top">
+              <div>
+                <div class="record-name">Sabor da Terra Restaurante</div>
+                <div class="record-cat">Restaurante regional</div>
+              </div>
+              <span class="badge badge-verified">DADO VERIFICADO</span>
+            </div>
+            <div class="record-meta">
+              <span>★ <b>4.7</b> (312 avaliações)</span>
+              <span>Distância: <b>2,4 km</b></span>
+              <span>Fonte: <b>exemplo_provider</b></span>
+            </div>
+            <div class="record-status">
+              <span class="status-dot status-none"></span>
+              Sem site identificado — confiança da análise: 92%
+            </div>
+            <div class="record-actions">
+              <button class="btn-outline">Ver detalhes</button>
+              <button class="btn-primary">Gerar site</button>
+            </div>
+          </div>
+          <div class="score-col">
+            <div class="score-num">87</div>
+            <div class="score-label">opportunity score</div>
+            <div class="score-why">
+              + avaliação excelente<br>
+              + 312 avaliações<br>
+              + sem site<br>
+              − Instagram ativo
+            </div>
+          </div>
+        </div>
+
+        <!-- Registro 2 -->
+        <div class="record"
+             data-category="Clínica"
+             data-rating="4.4"
+             data-reviews="98"
+             data-distance="5.1"
+             data-site-status="uncertain">
+          <div>
+            <div class="record-top">
+              <div>
+                <div class="record-name">Clínica Vida Plena</div>
+                <div class="record-cat">Clínica médica</div>
+              </div>
+              <span class="badge badge-verified">DADO VERIFICADO</span>
+            </div>
+            <div class="record-meta">
+              <span>★ <b>4.4</b> (98 avaliações)</span>
+              <span>Distância: <b>5,1 km</b></span>
+              <span>Fonte: <b>exemplo_provider</b></span>
+            </div>
+            <div class="record-status">
+              <span class="status-dot status-uncertain"></span>
+              Status do site incerto — verificação inconclusiva
+            </div>
+            <div class="record-actions">
+              <button class="btn-outline">Ver detalhes</button>
+              <button class="btn-primary">Gerar site</button>
+            </div>
+          </div>
+          <div class="score-col">
+            <div class="score-num">64</div>
+            <div class="score-label">opportunity score</div>
+            <div class="score-why">
+              + boa avaliação<br>
+              + categoria de alto valor<br>
+              − status de site incerto
+            </div>
+          </div>
+        </div>
+
+        <!-- Registro 3 -->
+        <div class="record"
+             data-category="Oficina mecânica"
+             data-rating="4.9"
+             data-reviews="201"
+             data-distance="7.8"
+             data-site-status="active">
+          <div>
+            <div class="record-top">
+              <div>
+                <div class="record-name">Oficina do Zé</div>
+                <div class="record-cat">Oficina mecânica</div>
+              </div>
+              <span class="badge badge-verified">DADO VERIFICADO</span>
+            </div>
+            <div class="record-meta">
+              <span>★ <b>4.9</b> (201 avaliações)</span>
+              <span>Distância: <b>7,8 km</b></span>
+              <span>Fonte: <b>exemplo_provider</b></span>
+            </div>
+            <div class="record-status">
+              <span class="status-dot status-active"></span>
+              Site ativo detectado — não recomendado para prospecção
+            </div>
+            <div class="record-actions">
+              <button class="btn-outline">Ver detalhes</button>
+            </div>
+          </div>
+          <div class="score-col">
+            <div class="score-num">21</div>
+            <div class="score-label">opportunity score</div>
+            <div class="score-why">
+              + avaliação altíssima<br>
+              − site ativo encontrado
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="empty-state" id="emptyState" hidden>
+        Nenhuma empresa de exemplo corresponde a esses filtros. Ajuste o raio, a categoria ou a avaliação mínima.
+      </p>
+
+      <footer>
+        <span class="badge badge-ai">GERADO POR IA</span>
+        &nbsp; este selo aparece nos textos criados pelo gerador de site (estrutura, chamadas, organização) — nunca em fatos sobre a empresa, que usam sempre o selo verde de dado verificado.
+      </footer>
+    </div><!-- /previewCapture -->
+  </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="search.js"></script>
+<script src="export.js"></script>
+</body>
+</html>
