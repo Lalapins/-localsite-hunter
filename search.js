@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       let matches = true;
 
+      // Aplicar filtros
       if (distance > radiusKm) matches = false;
       if (category !== 'todas' && cardCategory !== category) matches = false;
       if (rating < minRating) matches = false;
@@ -56,6 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (matches) visibleCount++;
     });
 
+    // Atualizar estado vazio e contagem
     emptyState.hidden = visibleCount !== 0;
     resultCount.textContent = visibleCount === 1
       ? '1 registro de exemplo'
